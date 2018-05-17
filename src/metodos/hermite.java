@@ -11,7 +11,7 @@ public class hermite {
 
     public void Hermite(double x[], double y[], String funcion) {
         String pol = "", sal = "";
-        double denominador = 0, numerador = 0, val=0;
+        double denominador = 0, numerador = 0, val = 0;
         //lenando x, y
         Object matriz[][] = new Object[x.length][x.length + 1];
         for (int i = 0; i < x.length; i++) {
@@ -19,30 +19,65 @@ public class hermite {
             matriz[i][1] = y[i];
         }
         //llendando matriz
-        int cn = 2;
-        for (int i = 1; i < x.length + 1; i++, cn++) {
-            for (int j = 1; j < x.length; j++) {
-                if (i == 1) {
-                    numerador=(((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]));
-                    denominador=(Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));
-                    if(numerador ==0 && denominador==0){
-                         sal = Derivar(funcion);
-                        val=val(sal,x[j]);
-                        matriz[j][cn]=val;
-                    }else{
-                    matriz[j][cn] = numerador / denominador;
+        int cn = 2, cont = 0;
+        if (!funcion.equals("")) {
+            for (int i = 1; i < x.length + 1; i++, cn++) {
+                for (int j = 1; j < x.length; j++) {
+                    if (i == 1) {
+                        numerador = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]));
+                        denominador = (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));
+                        if (numerador == 0 && denominador == 0 && cn == 2) {
+
+                            sal = Derivar(funcion);
+                            val = val(sal, x[j]);
+                            matriz[j][cn] = val;
+                        } else if (numerador == 0 && denominador == 0 && cn == 3) {
+                            sal = Derivar(sal);
+                            val = val(sal, x[j]);
+                            matriz[j][cn] = val;
+                        } else {
+                            matriz[j][cn] = numerador / denominador;
+                        }
+                    } else {
+                        int o = j + i - 1;
+                        if (o < x.length) {
+                            numerador = (((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]));
+                            denominador = (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
+                            if (numerador == 0 && denominador == 0) {
+                                sal = Derivar(funcion);
+                                val = val(sal, x[j]);
+                                matriz[j][cn] = val;
+                            } else {
+                                matriz[o][cn] = numerador / denominador;
+                            }
+                        }
                     }
-                } else {
-                    int o = j + i - 1;
-                    if (o < x.length) {
-                        numerador=(((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]));
-                        denominador=(Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
-                        if(numerador ==0 && denominador==0){
-                         sal = Derivar(funcion);
-                        val=val(sal,x[j]);
-                        matriz[j][cn]=val;
-                    }else{
-                        matriz[o][cn] = numerador / denominador;
+                }
+            }
+        } else {
+            for (int i = 1; i < x.length + 1; i++, cn++) {
+                for (int j = 1; j < x.length; j++) {
+                    if (i == 1) {
+                        numerador = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]));
+                        denominador = (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));
+                        if (numerador == 0 && denominador == 0 && cn==2) {
+                            //falta ingresar validacion
+                        } else if(numerador==0 && denominador==0 && cn==3){
+                            //falta ingresar validacion
+                        } 
+                        else {
+                            matriz[j][cn] = numerador / denominador;
+                        }
+                    } else {
+                        int o = j + i - 1;
+                        if (o < x.length) {
+                            numerador = (((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]));
+                            denominador = (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
+                            if (numerador == 0 && denominador == 0) {
+                                //falta ingresar validacion
+                            } else {
+                                matriz[o][cn] = numerador / denominador;
+                            }
                         }
                     }
                 }
