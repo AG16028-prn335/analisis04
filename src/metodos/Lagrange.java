@@ -6,8 +6,9 @@ public class Lagrange {
 
     public Lagrange() {
     }
+
     /**
-     * 
+     *
      * @param x en este vector estan las abscisas
      * @param y este vector controla las ordenadas
      * @param n es el numero a evaluar el polinimio filas
@@ -34,8 +35,8 @@ public class Lagrange {
             dd += "+ " + ecu[i];
         }
         dd = ss.poli(dd);
-         String pol[]={dd,String.valueOf(ss.Ecuacion(dd, n)),ErrorLangrage(x,y,n)};
-         return pol;
+        String pol[] = {dd, String.valueOf(ss.Ecuacion(dd, n)), ErrorLangrage(x, y, n)};
+        return pol;
     }
 
     public String ErrorLangrage(double a[], double b[], double v) {
@@ -43,8 +44,8 @@ public class Lagrange {
         for (int i = 0; i < a.length; i++) {
             s += "(x -" + a[i] + ")";
         }
-        er = "((" + b[b.length - 1] + ")/("+ss.Fact(a[a.length-1]+1)+"))" + s;
-        return ss.Ecuacion(er, v)+"%";
+        er = "((" + b[b.length - 1] + ")/(" + ss.Fact(a[a.length - 1] + 1) + "))" + s;
+        return ss.Ecuacion(er, v) + "%";
     }
 
 }
