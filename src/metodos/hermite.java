@@ -60,12 +60,11 @@ public class hermite {
                     if (i == 1) {
                         numerador = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]));
                         denominador = (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));
-                        if (numerador == 0 && denominador == 0 && cn==2) {
+                        if (numerador == 0 && denominador == 0 && cn == 2) {
                             //falta ingresar validacion
-                        } else if(numerador==0 && denominador==0 && cn==3){
+                        } else if (numerador == 0 && denominador == 0 && cn == 3) {
                             //falta ingresar validacion
-                        } 
-                        else {
+                        } else {
                             matriz[j][cn] = numerador / denominador;
                         }
                     } else {
