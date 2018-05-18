@@ -1,7 +1,8 @@
 package metodos;
+import metodos.Polynomial;
 
 public class Newton {
-
+Polynomial p = new Polynomial();
     public Newton() {
     }
     public void Newton(double a[], double b[]) {
@@ -27,6 +28,6 @@ public class Newton {
                 fun += " + (" + mat[i][i + 1] + fac + ")";
             }
         }
-        System.out.println("la funcion es:\nP(x) = " + fun);
+        System.out.println("la funcion es:\nP(x) = " + p.poli(fun));
     }
 }
