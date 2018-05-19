@@ -169,10 +169,10 @@ public class Home extends javax.swing.JFrame {
         i = 1;
 
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        cmbFunciones.addItem("ln(1+x)-cos(x)");
-        cmbFunciones.addItem("10sin(x) +3cos(x)");
+        cmbFunciones.addItem("Ejercicio 1a");
+        cmbFunciones.addItem("Ejercicio 1b");
+        cmbFunciones.addItem("Ejercicio 3a");
+        cmbFunciones.addItem("Ejercicio 3b");
         cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2+1");
         cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2)");
 
