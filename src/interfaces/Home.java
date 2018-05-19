@@ -49,7 +49,7 @@ public class Home extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnLagrange = new javax.swing.JButton();
         btnDif = new javax.swing.JButton();
-        btnTart = new javax.swing.JButton();
+        btnNewton = new javax.swing.JButton();
         lblPol = new javax.swing.JLabel();
         cmbFunciones = new javax.swing.JComboBox();
         txtPolinomio = new javax.swing.JTextField();
@@ -104,13 +104,13 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().add(btnDif, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 140, 30));
 
-        btnTart.setText("Metodo Newton");
-        btnTart.addActionListener(new java.awt.event.ActionListener() {
+        btnNewton.setText("Metodo Newton");
+        btnNewton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTartActionPerformed(evt);
+                btnNewtonActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
+        getContentPane().add(btnNewton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
 
         lblPol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPol.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,21 +173,23 @@ public class Home extends javax.swing.JFrame {
         cmbFunciones.addItem("Ejercicio 1b");
         cmbFunciones.addItem("Ejercicio 3a");
         cmbFunciones.addItem("Ejercicio 3b");
-        cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2+1");
-        cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2)");
+        cmbFunciones.addItem("Ejercicio 4a");
+        cmbFunciones.addItem("Ejercicio 4b");
 
     }//GEN-LAST:event_btnLagrangeActionPerformed
 
-    private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
+    private void btnNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewtonActionPerformed
         Oculta();
         ver(true);
         i = 2;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        
-        
-    }//GEN-LAST:event_btnTartActionPerformed
+        cmbFunciones.addItem("Ejercicio 1a");
+        cmbFunciones.addItem("Ejercicio 1b");
+        cmbFunciones.addItem("Ejercicio 3a");
+        cmbFunciones.addItem("Ejercicio 3b");
+        cmbFunciones.addItem("Ejercicio 4a");
+        cmbFunciones.addItem("Ejercicio 4b");
+    }//GEN-LAST:event_btnNewtonActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
         
@@ -202,8 +204,11 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 3;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("Ejercicio 1a");
+        cmbFunciones.addItem("Ejercicio 1b");
+        cmbFunciones.addItem("Ejercicio 2a");
+        cmbFunciones.addItem("Ejercicio 2b");
+        cmbFunciones.addItem("Ejercicio 2c");
         
     }//GEN-LAST:event_btnDifActionPerformed
 
@@ -217,12 +222,14 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 4;
         cmbFunciones.removeAll();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        cmbFunciones.addItem("Ejercicio 1a");
+        cmbFunciones.addItem("Ejercicio 1b");
+        cmbFunciones.addItem("Ejercicio 3a");
+        cmbFunciones.addItem("Ejercicio 3b");
+        cmbFunciones.addItem("Ejercicio 4a");
+        cmbFunciones.addItem("Ejercicio 4b");
+        cmbFunciones.addItem("Ejercicio 6a");
+        cmbFunciones.addItem("Ejercicio 6b");
 
     }//GEN-LAST:event_btnHermiteActionPerformed
 
@@ -232,15 +239,13 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 5;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        cmbFunciones.addItem("ln(1+x) -cos(x)");
-        cmbFunciones.addItem("10sin(x) +3cos(x)");
-        cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2 +1");
+        cmbFunciones.addItem("Ejercicio 1a");
+        cmbFunciones.addItem("Ejercicio 1b");
+        cmbFunciones.addItem("Ejercicio 5a");
+        cmbFunciones.addItem("Ejercicio 5b");
+        cmbFunciones.addItem("Ejercicio 5c");
+        cmbFunciones.addItem("Ejercicio 7");
+        
     }//GEN-LAST:event_btnTrazadoresActionPerformed
     public void ver(boolean i) {
         cmbFunciones.setVisible(i);
@@ -254,7 +259,7 @@ public class Home extends javax.swing.JFrame {
         btnHermite.setVisible(false);
         btnTrazadores.setVisible(false);
         btnLagrange.setVisible(false);
-        btnTart.setVisible(false);
+        btnNewton.setVisible(false);
 
     }
 
@@ -311,9 +316,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnDif;
     private javax.swing.JButton btnHermite;
     private javax.swing.JButton btnLagrange;
+    private javax.swing.JButton btnNewton;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnTart;
     private javax.swing.JButton btnTrazadores;
     private javax.swing.JComboBox cmbFunciones;
     private javax.swing.JLabel jLabel2;
