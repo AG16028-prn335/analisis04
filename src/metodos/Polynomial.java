@@ -1,9 +1,11 @@
 package metodos;
 
+import org.lsmp.djep.djep.DJep;
 import org.lsmp.djep.sjep.PolynomialCreator;
 import org.lsmp.djep.xjep.XJep;
 import org.nfunk.jep.JEP;
 import org.nfunk.jep.Node;
+import org.nfunk.jep.ParseException;
 
 public class Polynomial {
 
@@ -34,7 +36,8 @@ public class Polynomial {
             Node sim = pc.expand(n);
             pol = xj.toString(sim);
 
-            pol = pol.replaceAll("\\+-", "-");
+            pol = pol.replaceAll("\\+-", " - ");
+            pol = pol.replaceAll("\\+", " + ");
             pol = pol.replaceAll("\\*", "");
             return pol;
         } catch (Exception e) {
@@ -67,6 +70,33 @@ public class Polynomial {
             res *= i;
         }
         return res;
+    }
+        /**
+         * Este metodo permite encontrar la derivada de una funcion 
+         * @param fun esta es la cadena la funcion a derivar 
+         * @return  retorna la funcion ya derivada con respecto a x
+         */
+        public String Derivar(String fun) {
+        String deriv = "";
+        DJep Derivar = new DJep();
+        Derivar.addStandardFunctions();
+        Derivar.addStandardConstants();
+        Derivar.addComplex();
+        Derivar.setAllowUndeclared(true);
+        Derivar.setAllowAssignment(true);
+        Derivar.setImplicitMul(true);
+        Derivar.addStandardDiffRules();
+
+        try {
+            Node node = Derivar.parse(fun);
+            Node diff = Derivar.differentiate(node, "x");
+            Node sim = Derivar.simplify(diff);
+            deriv = Derivar.toString(sim);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return deriv;
     }
 
 }

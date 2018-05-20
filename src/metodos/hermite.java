@@ -1,137 +1,104 @@
 package metodos;
 
-import org.lsmp.djep.djep.DJep;
-import org.nfunk.jep.JEP;
-import org.nfunk.jep.Node;
-import org.nfunk.jep.ParseException;
-
 public class hermite {
 
-    JEP jp = new JEP();
+    Polynomial p = new Polynomial();
+
+    public hermite() {
+    }
 
     public void Hermite(double x[], double y[], String funcion) {
         String pol = "", sal = "";
-        double denominador = 0, numerador = 0, val = 0;
+        double nx[], Derivada[] = {1};
+        int co = 0, con = 1;
+        for (int i = 1; i < x.length; i++) {
+            if (x[i] != x[i - 1]) {
+                co++;
+            }
+        }
+        nx = new double[2 * (co + 1)];
+        co=2 * (co + 1)-1;
+        for (int i = 1; i < x.length; i++) {
+            con=1;
+            if (i != 1) {
+                if (i % 2 == 0) {
+                    if (x[i] != x[i - 1]) {
+                        nx[co] = x[i];
+                        co--;
+                    }
+                } else {
+                    for (int j = i; j <x.length; j++) {
+                        if (x[j]==x[j-1]) {
+                            con++;
+                        }else{
+                            break;
+                        }
+                    }
+                    nx[co]=con;
+                    co--;
+                }
+            } else {
+                nx[co] = x[i - 1];
+                    co--;
+                    for (int j = 1; j <x.length; j++) {
+                        if (x[j]==x[j-1]) {
+                            con++;
+                        }else{
+                            break;
+                        }
+                    }
+                    nx[co]=con;
+                    co--;
+            }
+        }
+        con=0;
+        for (int i = 0; i <nx.length; i++) {
+            if (i%2==0) {
+                con+=nx[i]-1;
+            }
+        }
+        
         //lenando x, y
-        Object matriz[][] = new Object[x.length][x.length + 1];
-        for (int i = 0; i < x.length; i++) {
-            matriz[i][0] = x[i];
-            matriz[i][1] = y[i];
-        }
-        //llendando matriz
-        int cn = 2, cont = 0;
-        if (!funcion.equals("")) {
-            for (int i = 1; i < x.length + 1; i++, cn++) {
-                for (int j = 1; j < x.length; j++) {
-                    if (i == 1) {
-                        numerador = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]));
-                        denominador = (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));
-                        if (numerador == 0 && denominador == 0 && cn == 2) {
-
-                            sal = Derivar(funcion);
-                            val = val(sal, x[j]);
-                            matriz[j][cn] = val;
-                        } else if (numerador == 0 && denominador == 0 && cn == 3) {
-                            sal = Derivar(sal);
-                            val = val(sal, x[j]);
-                            matriz[j][cn] = val;
-                        } else {
-                            matriz[j][cn] = numerador / denominador;
-                        }
-                    } else {
-                        int o = j + i - 1;
-                        if (o < x.length) {
-                            numerador = (((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]));
-                            denominador = (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
-                            if (numerador == 0 && denominador == 0) {
-                                sal = Derivar(funcion);
-                                val = val(sal, x[j]);
-                                matriz[j][cn] = val;
-                            } else {
-                                matriz[o][cn] = numerador / denominador;
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            for (int i = 1; i < x.length + 1; i++, cn++) {
-                for (int j = 1; j < x.length; j++) {
-                    if (i == 1) {
-                        numerador = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]));
-                        denominador = (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));
-                        if (numerador == 0 && denominador == 0 && cn == 2) {
-                            //falta ingresar validacion
-                        } else if (numerador == 0 && denominador == 0 && cn == 3) {
-                            //falta ingresar validacion
-                        } else {
-                            matriz[j][cn] = numerador / denominador;
-                        }
-                    } else {
-                        int o = j + i - 1;
-                        if (o < x.length) {
-                            numerador = (((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]));
-                            denominador = (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
-                            if (numerador == 0 && denominador == 0) {
-                                //falta ingresar validacion
-                            } else {
-                                matriz[o][cn] = numerador / denominador;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        //imprimiendo matriz
-        for (int s = 0; s < x.length; s++) {
-            for (int j = 0; j < x.length + 1; j++) {
-                if (matriz[s][j] != null) {
-                    System.out.print(matriz[s][j] + " |\t");
-                }
-            }
-            System.out.println("");
-        }
+//        Object matriz[][] = new Object[x.length][x.length + 1];
+//        for (int i = 0; i < x.length; i++) {
+//            matriz[i][0] = x[i];
+//            matriz[i][1] = y[i];
+//        }
+//        //llendando matriz
+//        int cn = 2;
+//        if (!funcion.equals("")) {
+//            for (int i = 1; i < x.length + 1; i++, cn++) {
+//            for (int j = 1; j < x.length; j++) {
+//                if (i == 1) {
+//                    if ((((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]))==0 && (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]))==0) {
+//                        matriz[j][cn]=Derivada[0];
+//                        System.out.println("hola");
+//                    }else{
+//                        matriz[j][cn] = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1])) / (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));                        
+//                    }
+//                } else {
+//                    int o = j + i - 1;
+//                    if (o < x.length) {
+//                         if ((((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]))==0 && (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - 1]))==0) {
+//                             matriz[j][cn]=Derivada[0];
+//                             System.out.println("hola");
+//                        }else{
+//                             matriz[o][cn] = (((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1])) / (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
+//                         }
+//                    }
+//                }
+//            }
+//        }
+//        }
+//        //imprimiendo matriz
+//        for (int s = 0; s < x.length; s++) {
+//            for (int j = 0; j < x.length + 1; j++) {
+//                if (matriz[s][j] != null) {
+//                    System.out.print(matriz[s][j] + " |\t");
+//                }
+//            }
+//            System.out.println("");
+//        }
 
     }
-
-    public hermite() {
-        jp.addStandardConstants();
-        jp.addStandardFunctions();
-        jp.addComplex();
-        jp.setImplicitMul(true);
-    }
-
-    public double val(String func, double num) {
-        jp.addVariable("x", num);
-        jp.parseExpression(func);
-        if (jp.hasError()) {
-            System.out.println("Ecuancion no entendible:\n" + jp.getErrorInfo());
-        }
-        return jp.getValue();
-    }
-
-    public String Derivar(String fun) {
-        String deriv = "";
-        DJep Derivar = new DJep();
-        Derivar.addStandardFunctions();
-        Derivar.addStandardConstants();
-        Derivar.addComplex();
-        Derivar.setAllowUndeclared(true);
-        Derivar.setAllowAssignment(true);
-        Derivar.setImplicitMul(true);
-        Derivar.addStandardDiffRules();
-
-        try {
-            Node node = Derivar.parse(fun);
-            Node diff = Derivar.differentiate(node, "x");
-            Node sim = Derivar.simplify(diff);
-            deriv = Derivar.toString(sim);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return deriv;
-    }
-
 }
