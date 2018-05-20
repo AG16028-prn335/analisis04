@@ -9,7 +9,7 @@ public class Newton {
     public Newton() {
     }
 
-    public void Newton(double a[], double b[]) {
+    public String[] Newton(double a[], double b[], double n) {
         String fac = "", fun = "";
         Object mat[][] = new Object[a.length][a.length + 1];
         for (int i = 0; i < a.length; i++) {
@@ -47,6 +47,10 @@ public class Newton {
                 fun += " + (" + mat[i][i + 1] + fac + ")";
             }
         }
-        System.out.println("la funcion es:\nP(x) = " + p.poli(fun));
+        String ec=p.poli(fun);
+        System.out.println("la funcion es:\nP(x) = " + ec);
+        //imprimiendo polinomio
+        String pol[]  = {ec,String.valueOf(p.Ecuacion(ec, n))};
+        return pol; 
     }
 }

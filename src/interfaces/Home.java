@@ -51,7 +51,7 @@ public class Home extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnLagrange = new javax.swing.JButton();
         btnDif = new javax.swing.JButton();
-        btnTart = new javax.swing.JButton();
+        btnNewton = new javax.swing.JButton();
         lblPol = new javax.swing.JLabel();
         cmbFunciones = new javax.swing.JComboBox();
         btnHermite = new javax.swing.JButton();
@@ -109,17 +109,17 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().add(btnDif, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 140, 30));
 
-        btnTart.setText("Metodo Newton");
-        btnTart.addActionListener(new java.awt.event.ActionListener() {
+        btnNewton.setText("Metodo Newton");
+        btnNewton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTartActionPerformed(evt);
+                btnNewtonActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
+        getContentPane().add(btnNewton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
 
         lblPol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPol.setForeground(new java.awt.Color(255, 255, 255));
-        lblPol.setText("Polinomio");
+        lblPol.setText("Respuesta:");
         getContentPane().add(lblPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 60, 20));
 
         cmbFunciones.addItemListener(new java.awt.event.ItemListener() {
@@ -154,7 +154,7 @@ public class Home extends javax.swing.JFrame {
         txtaResp.setRows(5);
         jScrollPane1.setViewportView(txtaResp);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         cmbAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "años", "1964", "2000", "2010", "2018" }));
         cmbAnio.addItemListener(new java.awt.event.ItemListener() {
@@ -202,16 +202,16 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLagrangeActionPerformed
 
-    private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
+    private void btnNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewtonActionPerformed
         Oculta();
         ver(true);
         i = 2;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("SELECCIONE");
+        cmbFunciones.addItem("Ejercicio 1");
+        cmbFunciones.addItem("Ejercicio 3");
 
-
-    }//GEN-LAST:event_btnTartActionPerformed
+    }//GEN-LAST:event_btnNewtonActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
         double n = 0;
@@ -227,15 +227,20 @@ public class Home extends javax.swing.JFrame {
                         btnGrafica.setVisible(false);
                         break;
                     case 2:
-                        double x[] = {0, Math.PI/3, Math.PI/2};
-                        double y[] = {0,0.6353845729, -2.243601471};
+                        double x[] = {0, Math.PI / 3, Math.PI / 2};
+                        double y[] = {0, 0.6353845729, -2.243601471};
                         cmbAnio.setVisible(false);
-                        String cadena[] = lg.Lagrange(x, y, Math.PI/4);
-                        txtaResp.setText(cadena[0] + "\n" +"Evaluado pi/4"+"\n"+ cadena[1] + "\n" + cadena[2]);
+                        String cadena[] = lg.Lagrange(x, y, Math.PI / 4);
+                        txtaResp.setText(cadena[0] + "\n" + "Evaluado pi/4" + "\n" + cadena[1] + "\n" + cadena[2]);
                         btnGrafica.setVisible(true);
                         break;
                     case 3:
-                        
+                        double a[] = {0, Math.PI / 4, Math.PI / 2};
+                        double b[] = {0, Math.sqrt(2) / 2, 1};
+                        cmbAnio.setVisible(false);
+                        String cadena1[] = lg.Lagrange(a, b, Math.PI / 3);
+                        txtaResp.setText(cadena1[0] + "\n" + "Evaluado pi/3" + "\n" + cadena1[1] + "\n" + cadena1[2]);
+                        btnGrafica.setVisible(true);
                         break;
                     default:
                         break;
@@ -243,6 +248,22 @@ public class Home extends javax.swing.JFrame {
 
                 break;
             case 2:
+                switch (cmbFunciones.getSelectedIndex()) {
+                    case 1:
+                        cmbAnio.setVisible(true);
+                        btnGrafica.setVisible(false);
+                        break;
+                    case 2:
+                        double x[] = {0, Math.PI / 3, Math.PI / 2};
+                        double y[] = {0, 0.6353845729, -2.243601471};
+                        cmbAnio.setVisible(false);
+                        String cadena[] = lg.Lagrange(x, y, Math.PI / 4);
+                        txtaResp.setText(cadena[0] + "\n" + "Evaluado pi/4" + "\n" + cadena[1] + "\n" + "error");
+                        btnGrafica.setVisible(true);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case 3:
                 break;
@@ -309,30 +330,58 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         double x[] = {1910, 1930, 1950, 1960, 1980};
         double y[] = {125350, 133420, 117183, 120323, 145311};
-        switch (cmbAnio.getSelectedIndex()) {
-            case 1: {
-                String cadena[] = lg.Lagrange(x, y, 1964);
-                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
-                break;
+        if (i == 1) {
+            switch (cmbAnio.getSelectedIndex()) {
+                case 1: {
+                    String cadena[] = lg.Lagrange(x, y, 1964);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                    break;
+                }
+                case 2: {
+                    String cadena[] = lg.Lagrange(x, y, 2000);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                    break;
+                }
+                case 3: {
+                    String cadena[] = lg.Lagrange(x, y, 2010);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                    break;
+                }
+                case 4: {
+                    String cadena[] = lg.Lagrange(x, y, 2018);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                    break;
+                }
+                default:
+                    break;
             }
-            case 2: {
-                String cadena[] = lg.Lagrange(x, y, 2000);
-                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
-                break;
+        } else if (i == 2) {
+            switch (cmbAnio.getSelectedIndex()) {
+                case 1: {
+                    String cadena[] = nw.Newton(x, y, 1964);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                    break;
+                }
+                case 2: {
+                    String cadena[] = nw.Newton(x, y, 2000);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                    break;
+                }
+                case 3: {
+                    String cadena[] = nw.Newton(x, y, 2010);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                    break;
+                }
+                case 4: {
+                    String cadena[] = nw.Newton(x, y, 2018);
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                    break;
+                }
+                default:
+                    break;
             }
-            case 3: {
-                String cadena[] = lg.Lagrange(x, y, 2010);
-                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
-                break;
-            }
-            case 4: {
-                String cadena[] = lg.Lagrange(x, y, 2018);
-                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
-                break;
-            }
-            default:
-                break;
         }
+
     }//GEN-LAST:event_cmbAnioItemStateChanged
 
     private void btnGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaActionPerformed
@@ -352,7 +401,7 @@ public class Home extends javax.swing.JFrame {
         btnHermite.setVisible(false);
         btnTrazadores.setVisible(false);
         btnLagrange.setVisible(false);
-        btnTart.setVisible(false);
+        btnNewton.setVisible(false);
 
     }
 
@@ -418,9 +467,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnGrafica;
     private javax.swing.JButton btnHermite;
     private javax.swing.JButton btnLagrange;
+    private javax.swing.JButton btnNewton;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnTart;
     private javax.swing.JButton btnTrazadores;
     private javax.swing.JComboBox<String> cmbAnio;
     private javax.swing.JComboBox cmbFunciones;
