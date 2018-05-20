@@ -30,9 +30,12 @@ public class Newton {
             }
         }
         /*Esta linea imprime la matriz*/
+        String salida="";
         for (int s = 0; s < a.length; s++) {
             for (int j = 0; j < a.length + 1; j++) {
                 if (mat[s][j] != null) {
+                    salida=salida+mat[s][j].toString()+"|\t";
+                    //salida=salida+"|\n";
                     System.out.print(mat[s][j] + " |\t");
                 }
             }
@@ -50,7 +53,7 @@ public class Newton {
         String ec=p.poli(fun);
         System.out.println("la funcion es:\nP(x) = " + ec);
         //imprimiendo polinomio
-        String pol[]  = {ec,String.valueOf(p.Ecuacion(ec, n))};
+        String pol[]  = {ec,String.valueOf(p.Ecuacion(ec, n)),salida};
         return pol; 
     }
 }

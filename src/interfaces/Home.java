@@ -120,7 +120,7 @@ public class Home extends javax.swing.JFrame {
         lblPol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPol.setForeground(new java.awt.Color(255, 255, 255));
         lblPol.setText("Respuesta:");
-        getContentPane().add(lblPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 60, 20));
+        getContentPane().add(lblPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 80, 20));
 
         cmbFunciones.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -231,15 +231,15 @@ public class Home extends javax.swing.JFrame {
                         double y[] = {0, 0.6353845729, -2.243601471};
                         cmbAnio.setVisible(false);
                         String cadena[] = lg.Lagrange(x, y, Math.PI / 4);
-                        txtaResp.setText(cadena[0] + "\n" + "Evaluado pi/4" + "\n" + cadena[1] + "\n" + cadena[2]);
+                        txtaResp.setText(cadena[0]);
                         btnGrafica.setVisible(true);
                         break;
                     case 3:
                         double a[] = {0, Math.PI / 4, Math.PI / 2};
                         double b[] = {0, Math.sqrt(2) / 2, 1};
                         cmbAnio.setVisible(false);
-                        String cadena1[] = lg.Lagrange(a, b, Math.PI / 3);
-                        txtaResp.setText(cadena1[0] + "\n" + "Evaluado pi/3" + "\n" + cadena1[1] + "\n" + cadena1[2]);
+                        String cadena1[] = lg.Lagrange(a, b, Math.PI / 6);
+                        txtaResp.setText(cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + cadena1[2]);
                         btnGrafica.setVisible(true);
                         break;
                     default:
@@ -258,7 +258,7 @@ public class Home extends javax.swing.JFrame {
                         double y[] = {0, 0.6353845729, -2.243601471};
                         cmbAnio.setVisible(false);
                         String cadena[] = lg.Lagrange(x, y, Math.PI / 4);
-                        txtaResp.setText(cadena[0] + "\n" + "Evaluado pi/4" + "\n" + cadena[1] + "\n" + "error");
+                        txtaResp.setText(cadena[0]);
                         btnGrafica.setVisible(true);
                         break;
                     default:
@@ -266,6 +266,30 @@ public class Home extends javax.swing.JFrame {
                 }
                 break;
             case 3:
+                switch (cmbFunciones.getSelectedIndex()) {
+                    case 1:
+                        cmbAnio.setVisible(true);
+                        btnGrafica.setVisible(false);
+                        break;
+                    case 2:
+                        btnGrafica.setVisible(false);
+                        double x[] = {0,2,5,6};
+                        double y[] = {3,6,10.5,24};
+                        cmbAnio.setVisible(false);
+                        String cadena[] = nw.Newton(x, y, 4);
+                        txtaResp.setText(cadena[2]+ "\n" +cadena[0] + "\n" + "Evaluado 4" + "\n" + cadena[1] + "\n" + "error");
+                        break;
+                    case 3:
+                        btnGrafica.setVisible(true);
+                        double a[] = {0, Math.PI / 4, Math.PI / 2};
+                        double b[] = {0, Math.sqrt(2) / 2, 1};
+                        cmbAnio.setVisible(false);
+                        String cadena1[] = nw.Newton(a, b, Math.PI / 6);
+                        txtaResp.setText(cadena1[2]+ "\n" +cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + "error");
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case 4:
                 break;
@@ -285,8 +309,10 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 3;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("SELECCIONE");
+        cmbFunciones.addItem("Ejercicio 1");
+        cmbFunciones.addItem("Ejercicio 2");
+        cmbFunciones.addItem("Ejercicio 4");
 
     }//GEN-LAST:event_btnDifActionPerformed
 
@@ -375,6 +401,31 @@ public class Home extends javax.swing.JFrame {
                 case 4: {
                     String cadena[] = nw.Newton(x, y, 2018);
                     txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                    break;
+                }
+                default:
+                    break;
+            }
+        } else if (i == 3) {
+            switch (cmbAnio.getSelectedIndex()) {
+                case 1: {
+                    String cadena[] = nw.Newton(x, y, 1964);
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                    break;
+                }
+                case 2: {
+                    String cadena[] = nw.Newton(x, y, 2000);
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                    break;
+                }
+                case 3: {
+                    String cadena[] = nw.Newton(x, y, 2010);
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                    break;
+                }
+                case 4: {
+                    String cadena[] = nw.Newton(x, y, 2018);
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
                     break;
                 }
                 default:
