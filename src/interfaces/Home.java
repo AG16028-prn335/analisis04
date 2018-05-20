@@ -5,11 +5,22 @@
  */
 package interfaces;
 
+import analisis04.Analisis04;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import metodos.Lagrange;
 import metodos.Newton;
 import metodos.Trazadores;
 import metodos.hermite;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -22,6 +33,10 @@ public class Home extends javax.swing.JFrame {
     Trazadores tc = new Trazadores();
     graficas gf = new graficas();
     hermite hm = new hermite();
+    Analisis04 a = new Analisis04();
+    public static double componenteX[];
+    public static double componenteY[];
+    public static double dj[], cj[], bj[];
 
     int i = 0;
     DefaultTableModel model = new DefaultTableModel();
@@ -31,6 +46,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        jPanelMuestraGrafica.setVisible(false);
         this.setLocationRelativeTo(null);
         cmbAnio.setVisible(false);
         btnGrafica.setVisible(false);
@@ -60,6 +76,7 @@ public class Home extends javax.swing.JFrame {
         txtaResp = new javax.swing.JTextArea();
         cmbAnio = new javax.swing.JComboBox<>();
         btnGrafica = new javax.swing.JButton();
+        jPanelMuestraGrafica = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +92,7 @@ public class Home extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 40, 30));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 40, 30));
 
         btnSalir.setBackground(new java.awt.Color(0, 0, 0));
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/_active__no.png"))); // NOI18N
@@ -86,7 +103,7 @@ public class Home extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 40, 30));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
 
         btnLagrange.setText("Metodo Lagrange");
         btnLagrange.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +111,7 @@ public class Home extends javax.swing.JFrame {
                 btnLagrangeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLagrange, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 140, 30));
+        getContentPane().add(btnLagrange, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 140, 30));
 
         btnDif.setText("Metodo Diferencias");
         btnDif.addItemListener(new java.awt.event.ItemListener() {
@@ -107,7 +124,7 @@ public class Home extends javax.swing.JFrame {
                 btnDifActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDif, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 140, 30));
+        getContentPane().add(btnDif, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 140, 30));
 
         btnNewton.setText("Metodo Newton");
         btnNewton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +132,7 @@ public class Home extends javax.swing.JFrame {
                 btnNewtonActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNewton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
+        getContentPane().add(btnNewton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 130, 30));
 
         lblPol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPol.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,7 +157,7 @@ public class Home extends javax.swing.JFrame {
                 btnHermiteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHermite, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, 30));
+        getContentPane().add(btnHermite, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 130, 30));
 
         btnTrazadores.setText("Metodo Trazadores");
         btnTrazadores.addActionListener(new java.awt.event.ActionListener() {
@@ -148,13 +165,13 @@ public class Home extends javax.swing.JFrame {
                 btnTrazadoresActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTrazadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 140, 30));
+        getContentPane().add(btnTrazadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 140, 30));
 
         txtaResp.setColumns(20);
         txtaResp.setRows(5);
         jScrollPane1.setViewportView(txtaResp);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 420, -1));
 
         cmbAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "años", "1964", "2000", "2010", "2018" }));
         cmbAnio.addItemListener(new java.awt.event.ItemListener() {
@@ -171,10 +188,11 @@ public class Home extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+        getContentPane().add(jPanelMuestraGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 670, 450));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo-negro.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 250));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,7 +275,7 @@ public class Home extends javax.swing.JFrame {
                         double x[] = {0, Math.PI / 3, Math.PI / 2};
                         double y[] = {0, 0.6353845729, -2.243601471};
                         cmbAnio.setVisible(false);
-                        String cadena[] = lg.Lagrange(x, y, Math.PI / 4);
+                        String cadena[] = nw.Newton(x, y, Math.PI / 4);
                         txtaResp.setText(cadena[0]);
                         btnGrafica.setVisible(true);
                         break;
@@ -273,11 +291,11 @@ public class Home extends javax.swing.JFrame {
                         break;
                     case 2:
                         btnGrafica.setVisible(false);
-                        double x[] = {0,2,5,6};
-                        double y[] = {3,6,10.5,24};
+                        double x[] = {0, 2, 5, 6};
+                        double y[] = {3, 6, 10.5, 24};
                         cmbAnio.setVisible(false);
                         String cadena[] = nw.Newton(x, y, 4);
-                        txtaResp.setText(cadena[2]+ "\n" +cadena[0] + "\n" + "Evaluado 4" + "\n" + cadena[1] + "\n" + "error");
+                        txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + "Evaluado 4" + "\n" + cadena[1] + "\n" + "error");
                         break;
                     case 3:
                         btnGrafica.setVisible(true);
@@ -285,7 +303,7 @@ public class Home extends javax.swing.JFrame {
                         double b[] = {0, Math.sqrt(2) / 2, 1};
                         cmbAnio.setVisible(false);
                         String cadena1[] = nw.Newton(a, b, Math.PI / 6);
-                        txtaResp.setText(cadena1[2]+ "\n" +cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + "error");
+                        txtaResp.setText(cadena1[2] + "\n" + cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + "error");
                         break;
                     default:
                         break;
@@ -326,12 +344,10 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 4;
         cmbFunciones.removeAll();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        cmbFunciones.addItem("Ejercicio 1");
+        cmbFunciones.addItem("Ejercicio 3");
+        cmbFunciones.addItem("Ejercicio 4");
+        cmbFunciones.addItem("Ejercicio 6");
 
     }//GEN-LAST:event_btnHermiteActionPerformed
 
@@ -341,15 +357,9 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 5;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        cmbFunciones.addItem("ln(1+x) -cos(x)");
-        cmbFunciones.addItem("10sin(x) +3cos(x)");
-        cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2 +1");
+        cmbFunciones.addItem("Ejercicio 1");
+        cmbFunciones.addItem("Ejercicio 5");
+        cmbFunciones.addItem("Ejercicio 7");
     }//GEN-LAST:event_btnTrazadoresActionPerformed
 
     private void cmbAnioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAnioItemStateChanged
@@ -437,7 +447,122 @@ public class Home extends javax.swing.JFrame {
 
     private void btnGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaActionPerformed
         // TODO add your handling code here:
-        gf.show();
+        lblPol.setVisible(false);
+        txtaResp.setVisible(false);
+        btnGrafica.setVisible(false);
+        jPanelMuestraGrafica.setVisible(true);
+        ChartPanel panel = null;
+        JFreeChart chart = null;
+        if (i == 1) {
+            XYSeries series = new XYSeries("");
+            if (cmbFunciones.getSelectedIndex() == 2) {
+                for (int i = -2; i <= 2; i++) {
+                    series.add(i, 4.676884835247799 * i - 3.886694785858488 * Math.pow(i, 2));
+                }
+            } else if (cmbFunciones.getSelectedIndex() == 3) {
+                for (int i = -2; i <= 2; i++) {
+                    series.add(i, 1.1640128599466308 * i - 0.3357488673628104 * Math.pow(i, 2));
+                }
+            }
+            XYSplineRenderer renderer = new XYSplineRenderer();
+            XYSeriesCollection dataset = new XYSeriesCollection();
+            dataset.addSeries(series);
+            ValueAxis x = new NumberAxis();
+            ValueAxis y = new NumberAxis();
+            XYSeries serie = new XYSeries("datos");
+            XYPlot plot;
+            jPanelMuestraGrafica.removeAll();
+            x.setLabel(" EJE X");
+            y.setLabel(" EJE Y");
+//
+            plot = new XYPlot(dataset, x, y, renderer);
+            chart = new JFreeChart(plot);
+//
+            chart.setTitle("Grafico");
+//
+            panel = new ChartPanel(chart);
+            panel.setBounds(5, 10, 600, 450);
+            jPanelMuestraGrafica.add(panel);
+            jPanelMuestraGrafica.repaint();
+
+        } else if (i == 2) {
+            XYSeries series = new XYSeries("");
+            for (int i = -2; i <= 2; i++) {
+                series.add(i, 4.6768848352478 * i - 3.8866947858584884 * Math.pow(i, 2));
+            }
+            XYSplineRenderer renderer = new XYSplineRenderer();
+            XYSeriesCollection dataset = new XYSeriesCollection();
+            dataset.addSeries(series);
+            ValueAxis x = new NumberAxis();
+            ValueAxis y = new NumberAxis();
+            XYSeries serie = new XYSeries("datos");
+            XYPlot plot;
+            jPanelMuestraGrafica.removeAll();
+            x.setLabel(" EJE X");
+            y.setLabel(" EJE Y");
+//
+            plot = new XYPlot(dataset, x, y, renderer);
+            chart = new JFreeChart(plot);
+//
+            chart.setTitle("Grafico");
+//
+            panel = new ChartPanel(chart);
+            panel.setBounds(5, 10, 600, 450);
+            jPanelMuestraGrafica.add(panel);
+            jPanelMuestraGrafica.repaint();
+        } else if (i == 3) {
+            XYSeries series = new XYSeries("");
+            for (int i = -2; i <= 2; i++) {
+                series.add(i, 1.1640128599466308 * i - 0.33574886736281045 * Math.pow(i, 2));
+            }
+            XYSplineRenderer renderer = new XYSplineRenderer();
+            XYSeriesCollection dataset = new XYSeriesCollection();
+            dataset.addSeries(series);
+            ValueAxis x = new NumberAxis();
+            ValueAxis y = new NumberAxis();
+            XYSeries serie = new XYSeries("datos");
+            XYPlot plot;
+            jPanelMuestraGrafica.removeAll();
+            x.setLabel(" EJE X");
+            y.setLabel(" EJE Y");
+//
+            plot = new XYPlot(dataset, x, y, renderer);
+            chart = new JFreeChart(plot);
+//
+            chart.setTitle("Grafico");
+//
+            panel = new ChartPanel(chart);
+            panel.setBounds(5, 10, 600, 450);
+            jPanelMuestraGrafica.add(panel);
+            jPanelMuestraGrafica.repaint();
+        } else if (i == 4) {
+            XYSeries series = new XYSeries("");
+            for (int i = -2; i <= 2; i++) {
+                //este falta
+                series.add(i, 1 * i - 1* Math.pow(i, 2));
+            }
+            XYSplineRenderer renderer = new XYSplineRenderer();
+            XYSeriesCollection dataset = new XYSeriesCollection();
+            dataset.addSeries(series);
+            ValueAxis x = new NumberAxis();
+            ValueAxis y = new NumberAxis();
+            XYSeries serie = new XYSeries("datos");
+            XYPlot plot;
+            jPanelMuestraGrafica.removeAll();
+            x.setLabel(" EJE X");
+            y.setLabel(" EJE Y");
+//
+            plot = new XYPlot(dataset, x, y, renderer);
+            chart = new JFreeChart(plot);
+//
+            chart.setTitle("Grafico");
+//
+            panel = new ChartPanel(chart);
+            panel.setBounds(5, 10, 600, 450);
+            jPanelMuestraGrafica.add(panel);
+            jPanelMuestraGrafica.repaint();
+        }
+
     }//GEN-LAST:event_btnGraficaActionPerformed
     public void ver(boolean i) {
         cmbFunciones.setVisible(i);
@@ -525,6 +650,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbAnio;
     private javax.swing.JComboBox cmbFunciones;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanelMuestraGrafica;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPol;
     private javax.swing.JTextArea txtaResp;
