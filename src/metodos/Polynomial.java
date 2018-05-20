@@ -68,7 +68,6 @@ public class Polynomial {
         long  res = (long)1;
         for (int i = 1; i <= n; i++) {
             res *= (long)i;
-            System.out.println("resFac: "+res);
         }
         return res;
     }
