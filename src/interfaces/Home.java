@@ -5,7 +5,6 @@
  */
 package interfaces;
 
-
 import javax.swing.table.DefaultTableModel;
 import metodos.Lagrange;
 import metodos.Newton;
@@ -18,9 +17,10 @@ import metodos.hermite;
  */
 public class Home extends javax.swing.JFrame {
 
-   Lagrange lg = new Lagrange();
+    Lagrange lg = new Lagrange();
     Newton nw = new Newton();
     Trazadores tc = new Trazadores();
+    graficas gf = new graficas();
     hermite hm = new hermite();
 
     int i = 0;
@@ -32,6 +32,8 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cmbAnio.setVisible(false);
+        btnGrafica.setVisible(false);
         ver(false);
 
     }
@@ -49,12 +51,15 @@ public class Home extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnLagrange = new javax.swing.JButton();
         btnDif = new javax.swing.JButton();
-        btnNewton = new javax.swing.JButton();
+        btnTart = new javax.swing.JButton();
         lblPol = new javax.swing.JLabel();
         cmbFunciones = new javax.swing.JComboBox();
-        txtPolinomio = new javax.swing.JTextField();
         btnHermite = new javax.swing.JButton();
         btnTrazadores = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtaResp = new javax.swing.JTextArea();
+        cmbAnio = new javax.swing.JComboBox<>();
+        btnGrafica = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,13 +109,13 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().add(btnDif, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 140, 30));
 
-        btnNewton.setText("Metodo Newton");
-        btnNewton.addActionListener(new java.awt.event.ActionListener() {
+        btnTart.setText("Metodo Newton");
+        btnTart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewtonActionPerformed(evt);
+                btnTartActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNewton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
+        getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, 30));
 
         lblPol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPol.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,8 +132,7 @@ public class Home extends javax.swing.JFrame {
                 cmbFuncionesActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 250, -1));
-        getContentPane().add(txtPolinomio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 250, 40));
+        getContentPane().add(cmbFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 230, -1));
 
         btnHermite.setText("Metodo Hermite");
         btnHermite.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +149,28 @@ public class Home extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnTrazadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 140, 30));
+
+        txtaResp.setColumns(20);
+        txtaResp.setRows(5);
+        jScrollPane1.setViewportView(txtaResp);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+
+        cmbAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "años", "1964", "2000", "2010", "2018" }));
+        cmbAnio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAnioItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(cmbAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 80, -1));
+
+        btnGrafica.setText("Gráfica");
+        btnGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo-negro.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -169,30 +195,64 @@ public class Home extends javax.swing.JFrame {
         i = 1;
 
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("Ejercicio 1a");
-        cmbFunciones.addItem("Ejercicio 1b");
-        cmbFunciones.addItem("Ejercicio 3a");
-        cmbFunciones.addItem("Ejercicio 3b");
-        cmbFunciones.addItem("Ejercicio 4a");
-        cmbFunciones.addItem("Ejercicio 4b");
+        cmbFunciones.addItem("SELECCIONE");
+        cmbFunciones.addItem("Ejercicio 1");
+        cmbFunciones.addItem("Ejercicio 3");
+        cmbFunciones.addItem("Ejercicio 4");
 
     }//GEN-LAST:event_btnLagrangeActionPerformed
 
-    private void btnNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewtonActionPerformed
+    private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
         Oculta();
         ver(true);
         i = 2;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("Ejercicio 1a");
-        cmbFunciones.addItem("Ejercicio 1b");
-        cmbFunciones.addItem("Ejercicio 3a");
-        cmbFunciones.addItem("Ejercicio 3b");
-        cmbFunciones.addItem("Ejercicio 4a");
-        cmbFunciones.addItem("Ejercicio 4b");
-    }//GEN-LAST:event_btnNewtonActionPerformed
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+
+
+    }//GEN-LAST:event_btnTartActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
-        
+        double n = 0;
+
+        limpiar();
+        switch (i) {
+            //ver que boton elegio
+            case 1:
+                //elegir ejercicio
+                switch (cmbFunciones.getSelectedIndex()) {
+                    case 1:
+                        cmbAnio.setVisible(true);
+                        btnGrafica.setVisible(false);
+                        break;
+                    case 2:
+                        double x[] = {0, Math.PI/3, Math.PI/2};
+                        double y[] = {0,0.6353845729, -2.243601471};
+                        cmbAnio.setVisible(false);
+                        String cadena[] = lg.Lagrange(x, y, Math.PI/4);
+                        txtaResp.setText(cadena[0] + "\n" +"Evaluado pi/4"+"\n"+ cadena[1] + "\n" + cadena[2]);
+                        btnGrafica.setVisible(true);
+                        break;
+                    case 3:
+                        
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_cmbFuncionesItemStateChanged
 
     private void cmbFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFuncionesActionPerformed
@@ -204,12 +264,9 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 3;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("Ejercicio 1a");
-        cmbFunciones.addItem("Ejercicio 1b");
-        cmbFunciones.addItem("Ejercicio 2a");
-        cmbFunciones.addItem("Ejercicio 2b");
-        cmbFunciones.addItem("Ejercicio 2c");
-        
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+
     }//GEN-LAST:event_btnDifActionPerformed
 
     private void btnDifItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnDifItemStateChanged
@@ -222,14 +279,12 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 4;
         cmbFunciones.removeAll();
-        cmbFunciones.addItem("Ejercicio 1a");
-        cmbFunciones.addItem("Ejercicio 1b");
-        cmbFunciones.addItem("Ejercicio 3a");
-        cmbFunciones.addItem("Ejercicio 3b");
-        cmbFunciones.addItem("Ejercicio 4a");
-        cmbFunciones.addItem("Ejercicio 4b");
-        cmbFunciones.addItem("Ejercicio 6a");
-        cmbFunciones.addItem("Ejercicio 6b");
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
 
     }//GEN-LAST:event_btnHermiteActionPerformed
 
@@ -239,17 +294,55 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 5;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("Ejercicio 1a");
-        cmbFunciones.addItem("Ejercicio 1b");
-        cmbFunciones.addItem("Ejercicio 5a");
-        cmbFunciones.addItem("Ejercicio 5b");
-        cmbFunciones.addItem("Ejercicio 5c");
-        cmbFunciones.addItem("Ejercicio 7");
-        
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        cmbFunciones.addItem("ln(1+x) -cos(x)");
+        cmbFunciones.addItem("10sin(x) +3cos(x)");
+        cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2 +1");
     }//GEN-LAST:event_btnTrazadoresActionPerformed
+
+    private void cmbAnioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAnioItemStateChanged
+        // TODO add your handling code here:
+        double x[] = {1910, 1930, 1950, 1960, 1980};
+        double y[] = {125350, 133420, 117183, 120323, 145311};
+        switch (cmbAnio.getSelectedIndex()) {
+            case 1: {
+                String cadena[] = lg.Lagrange(x, y, 1964);
+                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                break;
+            }
+            case 2: {
+                String cadena[] = lg.Lagrange(x, y, 2000);
+                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                break;
+            }
+            case 3: {
+                String cadena[] = lg.Lagrange(x, y, 2010);
+                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                break;
+            }
+            case 4: {
+                String cadena[] = lg.Lagrange(x, y, 2018);
+                txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                break;
+            }
+            default:
+                break;
+        }
+    }//GEN-LAST:event_cmbAnioItemStateChanged
+
+    private void btnGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaActionPerformed
+        // TODO add your handling code here:
+        gf.show();
+    }//GEN-LAST:event_btnGraficaActionPerformed
     public void ver(boolean i) {
         cmbFunciones.setVisible(i);
-        txtPolinomio.setVisible(i);
+        jScrollPane1.setVisible(i);
+        txtaResp.setVisible(i);
         lblPol.setVisible(i);
 
     }
@@ -259,7 +352,7 @@ public class Home extends javax.swing.JFrame {
         btnHermite.setVisible(false);
         btnTrazadores.setVisible(false);
         btnLagrange.setVisible(false);
-        btnNewton.setVisible(false);
+        btnTart.setVisible(false);
 
     }
 
@@ -303,6 +396,14 @@ public class Home extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -314,15 +415,18 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDif;
+    private javax.swing.JButton btnGrafica;
     private javax.swing.JButton btnHermite;
     private javax.swing.JButton btnLagrange;
-    private javax.swing.JButton btnNewton;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnTart;
     private javax.swing.JButton btnTrazadores;
+    private javax.swing.JComboBox<String> cmbAnio;
     private javax.swing.JComboBox cmbFunciones;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPol;
-    private javax.swing.JTextField txtPolinomio;
+    private javax.swing.JTextArea txtaResp;
     // End of variables declaration//GEN-END:variables
 }
