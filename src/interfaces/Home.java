@@ -5,7 +5,6 @@
  */
 package interfaces;
 
-import analisis04.Analisis04;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,10 +32,6 @@ public class Home extends javax.swing.JFrame {
     Trazadores tc = new Trazadores();
     graficas gf = new graficas();
     hermite hm = new hermite();
-    Analisis04 a = new Analisis04();
-    public static double componenteX[];
-    public static double componenteY[];
-    public static double dj[], cj[], bj[];
 
     int i = 0;
     DefaultTableModel model = new DefaultTableModel();
@@ -456,13 +451,17 @@ public class Home extends javax.swing.JFrame {
         if (i == 1) {
             XYSeries series = new XYSeries("");
             if (cmbFunciones.getSelectedIndex() == 2) {
-                for (int i = -2; i <= 2; i++) {
+                double i = 0;
+                do {
                     series.add(i, 4.676884835247799 * i - 3.886694785858488 * Math.pow(i, 2));
-                }
+                    i = i + 0.01;
+                } while (i <= Math.PI / 2);
             } else if (cmbFunciones.getSelectedIndex() == 3) {
-                for (int i = -2; i <= 2; i++) {
+                double i = 0;
+                do {
                     series.add(i, 1.1640128599466308 * i - 0.3357488673628104 * Math.pow(i, 2));
-                }
+                    i = i + 0.01;
+                } while (i <= Math.PI / 2);
             }
             XYSplineRenderer renderer = new XYSplineRenderer();
             XYSeriesCollection dataset = new XYSeriesCollection();
@@ -487,9 +486,11 @@ public class Home extends javax.swing.JFrame {
 
         } else if (i == 2) {
             XYSeries series = new XYSeries("");
-            for (int i = -2; i <= 2; i++) {
+            double i = 0;
+            do {
                 series.add(i, 4.6768848352478 * i - 3.8866947858584884 * Math.pow(i, 2));
-            }
+                i = i + 0.01;
+            } while (i <= Math.PI / 2);
             XYSplineRenderer renderer = new XYSplineRenderer();
             XYSeriesCollection dataset = new XYSeriesCollection();
             dataset.addSeries(series);
@@ -512,9 +513,11 @@ public class Home extends javax.swing.JFrame {
             jPanelMuestraGrafica.repaint();
         } else if (i == 3) {
             XYSeries series = new XYSeries("");
-            for (int i = -2; i <= 2; i++) {
+            double i = 0;
+            do {
                 series.add(i, 1.1640128599466308 * i - 0.33574886736281045 * Math.pow(i, 2));
-            }
+                i = i + 0.01;
+            } while (i <= Math.PI / 2);
             XYSplineRenderer renderer = new XYSplineRenderer();
             XYSeriesCollection dataset = new XYSeriesCollection();
             dataset.addSeries(series);
@@ -539,8 +542,9 @@ public class Home extends javax.swing.JFrame {
             XYSeries series = new XYSeries("");
             for (int i = -2; i <= 2; i++) {
                 //este falta
-                series.add(i, 1 * i - 1* Math.pow(i, 2));
+                series.add(i, 1 * i - 1 * Math.pow(i, 2));
             }
+
             XYSplineRenderer renderer = new XYSplineRenderer();
             XYSeriesCollection dataset = new XYSeriesCollection();
             dataset.addSeries(series);
