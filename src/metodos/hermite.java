@@ -59,11 +59,13 @@ public class hermite {
         }
         pol=funcion;
         System.out.println("nx: "+(nx.length)/2);
-        while(con>0){
+        while(con-1>0){
            pol= p.Derivar(pol);
+            System.out.println("pol: "+pol);
             for (int i = 0; i < 10; i++) {
                 
             }
+            con--;
         }
         
         //lenando x, y
