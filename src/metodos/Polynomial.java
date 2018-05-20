@@ -64,10 +64,11 @@ public class Polynomial {
      * @param n numero para calcular factorial
      * @return retorna el valor del factorial del numero n 
      */
-    public double Fact(double n) {
-        double res = 1;
+    public Long Fact(double n) {
+        long  res = (long)1;
         for (int i = 1; i <= n; i++) {
-            res *= i;
+            res *= (long)i;
+            System.out.println("resFac: "+res);
         }
         return res;
     }

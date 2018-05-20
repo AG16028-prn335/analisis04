@@ -2,6 +2,7 @@ package analisis04;
 
 import metodos.Lagrange;
 import metodos.Newton;
+import metodos.Polynomial;
 import metodos.hermite;
 
 public class Analisis04 {
