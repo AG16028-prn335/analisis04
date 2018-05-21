@@ -37,10 +37,13 @@ public class Newton {
                     salida=salida+mat[s][j].toString()+"|\t";
                     //salida=salida+"|\n";
                     System.out.print(mat[s][j] + " |\t");
+                    
                 }
             }
             System.out.println("");
+            
         }
+        Double ult=(double)mat[a.length-1][a.length];
         //Metodo para hacer el polinimio solo indicado.
         for (int i = 0; i < a.length; i++) {
             if (i == 0) {
@@ -50,10 +53,20 @@ public class Newton {
                 fun += " + (" + mat[i][i + 1] + fac + ")";
             }
         }
+        
         String ec=p.poli(fun);
         System.out.println("la funcion es:\nP(x) = " + ec);
         //imprimiendo polinomio
-        String pol[]  = {ec,String.valueOf(p.Ecuacion(ec, n)),salida};
+        String pol[]  = {ec,String.valueOf(p.Ecuacion(ec, n)),salida, ErrorNewton(a, ult,n)};
         return pol; 
+    }
+    
+    public String ErrorNewton(double a[], double ult, double v) {
+        String s = "", er;
+        for (int i = 0; i < a.length; i++) {
+            s += "(x -" + a[i] + ")";
+        }
+        er = "(" + ult + ")*" + s;
+        return p.Ecuacion(er, v) + "";
     }
 }

@@ -288,7 +288,7 @@ public class Home extends javax.swing.JFrame {
                         double y[] = {3, 6, 10.5, 24};
                         cmbAnio.setVisible(false);
                         String cadena[] = nw.Newton(x, y, 4);
-                        txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + "Evaluado 4" + "\n" + cadena[1] + "\n" + "error");
+                        txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + "Evaluado 4" + "\n" + cadena[1] + "\n" + cadena[3]);
                         break;
                     case 3:
                         btnGrafica.setVisible(true);
@@ -296,7 +296,7 @@ public class Home extends javax.swing.JFrame {
                         double b[] = {0, Math.sqrt(2) / 2, 1};
                         cmbAnio.setVisible(false);
                         String cadena1[] = nw.Newton(a, b, Math.PI / 6);
-                        txtaResp.setText(cadena1[2] + "\n" + cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + "error");
+                        txtaResp.setText(cadena1[2] + "\n" + cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + cadena1[3]);
                         break;
                     default:
                         break;
@@ -317,8 +317,6 @@ public class Home extends javax.swing.JFrame {
                     default:
                         break;
                 }
-                break;
-            case 5:
                 break;
             default:
                 break;
@@ -401,22 +399,22 @@ public class Home extends javax.swing.JFrame {
             switch (cmbAnio.getSelectedIndex()) {
                 case 1: {
                     String cadena[] = nw.Newton(x, y, 1964);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 2: {
                     String cadena[] = nw.Newton(x, y, 2000);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 3: {
                     String cadena[] = nw.Newton(x, y, 2010);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 4: {
                     String cadena[] = nw.Newton(x, y, 2018);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 default:
@@ -426,22 +424,22 @@ public class Home extends javax.swing.JFrame {
             switch (cmbAnio.getSelectedIndex()) {
                 case 1: {
                     String cadena[] = nw.Newton(x, y, 1964);
-                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 2: {
                     String cadena[] = nw.Newton(x, y, 2000);
-                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 3: {
                     String cadena[] = nw.Newton(x, y, 2010);
-                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 4: {
                     String cadena[] = nw.Newton(x, y, 2018);
-                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                    txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 default:
