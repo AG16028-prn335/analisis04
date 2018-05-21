@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import metodos.Lagrange;
 import metodos.Newton;
+import metodos.Polynomial;
 import metodos.Trazadores;
 import metodos.hermite;
 import org.jfree.chart.ChartPanel;
@@ -31,6 +32,7 @@ public class Home extends javax.swing.JFrame {
     Newton nw = new Newton();
     hermite hm = new hermite();
     Cubicos tc = new Cubicos();
+    Polynomial p = new Polynomial();
     int i = 0;
     DefaultTableModel model = new DefaultTableModel();
 
@@ -309,6 +311,14 @@ public class Home extends javax.swing.JFrame {
                         btnGrafica.setVisible(false);
                         break;
                     case 2:
+                        double x[] = {0, Math.PI / 3, Math.PI / 2};
+                        double x1[]={p.Ecuacion(p.Derivar("x^2cos(5x+2)"), 0),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 3),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 2)};
+                        double y1[]={0};
+                        double y[] = {0, 0.6353845729, -2.243601471};
+                        cmbAnio.setVisible(false);
+                        String cadena[] = hm.Hermite(x, y, x1,y1, (Math.PI / 4));
+                        txtaResp.setText(cadena[0]);
+                        btnGrafica.setVisible(true);
                         break;
                     case 3:
                         break;
@@ -369,6 +379,8 @@ public class Home extends javax.swing.JFrame {
     private void cmbAnioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAnioItemStateChanged
         // TODO add your handling code here:
         double x[] = {1910, 1930, 1950, 1960, 1980};
+        double x1[] = {1, 2, 3, 4, 5};
+        double y1[] = {0};
         double y[] = {125350, 133420, 117183, 120323, 145311};
         if (i == 1) {
             switch (cmbAnio.getSelectedIndex()) {
@@ -440,6 +452,31 @@ public class Home extends javax.swing.JFrame {
                 case 4: {
                     String cadena[] = nw.Newton(x, y, 2018);
                     txtaResp.setText(cadena[2] + "\n" + cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
+                    break;
+                }
+                default:
+                    break;
+            }
+        } else if(i==4){
+        switch (cmbAnio.getSelectedIndex()) {
+                case 1: {
+                    // String cadena[] = hm.Hermite(x, y, x1, y1, 1964);
+                    //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
+                    break;
+                }
+                case 2: {
+                    // String cadena[] = hm.Hermite(x, y, x1, y1, 2000);
+                    //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
+                    break;
+                }
+                case 3: {
+                    // String cadena[] = hm.Hermite(x, y, x1, y1, 2010);
+                    //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
+                    break;
+                }
+                case 4: {
+                    // String cadena[] = hm.Hermite(x, y, x1, y1, 2018);
+                    //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 default:

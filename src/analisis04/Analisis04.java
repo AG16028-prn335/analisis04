@@ -18,11 +18,11 @@ public class Analisis04 {
 //            System.out.println("p:" + p[i]);
 //        }
 
-        hermite h = new hermite();
-        double x[] = {1,1,2,2,3,3};
-        double y[] = {0, 0,0, 0.69314718, 0.69314718};
-        String funcion = "ln(x)";
-        h.Hermite(x, y, funcion);
+//        hermite h = new hermite();
+//        double x[] = {1,1,2,2,3,3};
+//        double y[] = {0, 0,0, 0.69314718, 0.69314718};
+//        String funcion = "ln(x)";
+//        h.Hermite(x, y, funcion);
     }
 
 }
