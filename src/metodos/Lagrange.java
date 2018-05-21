@@ -44,7 +44,7 @@ public class Lagrange {
         for (int i = 0; i < a.length; i++) {
             s += "(x -" + a[i] + ")";
         }
-        er = "((" + b[b.length - 1] + ")/(" + ss.Fact(a[a.length - 1] + 1) + "))" + s;
+        er = "((" + b[b.length - 1] + ")/(" + ss.Fact(a.length) + "))" + s;
         return ss.Ecuacion(er, v) + "%";
     }
 

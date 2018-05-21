@@ -9,7 +9,7 @@ public class hermite {
 
     public void Hermite(double x[], double y[], String funcion) {
         String pol = "", sal = "";
-        double nx[], Derivada[] = {1};
+        double nx[], Derivada[];
         int co = 0, con = 1;
         for (int i = 1; i < x.length; i++) {
             if (x[i] != x[i - 1]) {
@@ -56,6 +56,16 @@ public class hermite {
             if (i%2==0) {
                 con+=nx[i]-1;
             }
+        }
+        pol=funcion;
+        System.out.println("nx: "+(nx.length)/2);
+        while(con-1>0){
+           pol= p.Derivar(pol);
+            System.out.println("pol: "+pol);
+            for (int i = 0; i < 10; i++) {
+                
+            }
+            con--;
         }
         
         //lenando x, y
