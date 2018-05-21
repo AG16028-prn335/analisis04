@@ -72,6 +72,34 @@ public class hermite {
                 co+=(int) nx[i+1];
             }
         }
+        con=1;
+        if (!funcion.isEmpty()) {
+             
+            for (int i = 0; i <nx.length; i++) {
+                pol=funcion;
+                if (i%2!=0) {
+                    co=(int)nx[i];
+               while(co>1){
+                   if (Derivada[con]==0) {
+                       pol=p.Derivar(pol);
+                       Derivada[con]=p.Ecuacion(pol, nx[i-1]);
+                       con++;
+                   }else{
+                       break;
+                   }
+               co--;    
+               }
+               con++;
+                }
+            }
+        }else{
+            for (int i = 0; i <Derivada.length; i++) {
+                if (Derivada[i]==0) {
+                    Derivada[i]=con;
+                    //solo puse con para q no de error
+                }
+            }
+        }
         for (int i = 0; i <Derivada.length; i++) {
             System.out.println("der: "+Derivada[i]);
         }

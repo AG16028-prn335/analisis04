@@ -19,7 +19,7 @@ public class Analisis04 {
 //        }
 
         hermite h = new hermite();
-        double x[] = {1,1, 1, 1, 2, 2,2,2,2,2,2,2,3,3};
+        double x[] = {1,1,2,2,3,3};
         double y[] = {0, 0,0, 0.69314718, 0.69314718};
         String funcion = "ln(x)";
         h.Hermite(x, y, funcion);
