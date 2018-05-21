@@ -321,8 +321,24 @@ public class Home extends javax.swing.JFrame {
                         btnGrafica.setVisible(true);
                         break;
                     case 3:
+                        double a[] = {0, Math.PI / 4, Math.PI / 2};
+                        double x2[]={p.Ecuacion(p.Derivar("sen(x)"), 0),p.Ecuacion(p.Derivar("sen(x)"), Math.PI / 4),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 2)};
+                        double y2[]={0};
+                        double b[] = {0, Math.sqrt(2) / 2, 1};
+                        cmbAnio.setVisible(false);
+                        String cadena1[] = hm.Hermite(a, b, x2, y2,Math.PI / 6);
+                        txtaResp.setText(cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + cadena1[2]);
+                        btnGrafica.setVisible(true);
                         break;
                     case 4:
+                        double c[] = {0,1};
+                        double c1[]={-2,0};
+                        double d1[]={6,-8};
+                        double d[] = {1, 1};
+                        cmbAnio.setVisible(false);
+                        String cadena2[] = hm.Hermite(c, d, c1, d1, 2);
+                        txtaResp.setText(cadena2[0] + "\n" + "Evaluado 2" + "\n" + cadena2[1] + "\n" + cadena2[2]);
+                        btnGrafica.setVisible(true);
                         break;
                     default:
                         break;
@@ -586,12 +602,21 @@ public class Home extends javax.swing.JFrame {
             jPanelMuestraGrafica.add(panel);
             jPanelMuestraGrafica.repaint();
         } else if (i == 4) {
-            XYSeries series = new XYSeries("");
-            for (int i = -2; i <= 2; i++) {
-                //este falta
-                series.add(i, 1 * i - 1 * Math.pow(i, 2));
+            XYSeries series = new XYSeries(""); 
+//
+            if (cmbFunciones.getSelectedIndex() == 2) {
+                double i = 0;
+                do {
+                    series.add(i, 4.676884835247799 * i - 3.886694785858488 * Math.pow(i, 2));
+                    i = i + 0.01;
+                } while (i <= Math.PI / 2);
+            } else if (cmbFunciones.getSelectedIndex() == 3) {
+                double i = 0;
+                do {
+                    series.add(i, 1.1640128599466308 * i - 0.3357488673628104 * Math.pow(i, 2));
+                    i = i + 0.01;
+                } while (i <= Math.PI / 2);
             }
-
             XYSplineRenderer renderer = new XYSplineRenderer();
             XYSeriesCollection dataset = new XYSeriesCollection();
             dataset.addSeries(series);
