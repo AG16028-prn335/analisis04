@@ -146,4 +146,12 @@ public class hermite {
         }
 
     }
+    /*public String ErrorHermite(double a[], double ult, double v) {
+        String s = "", er;
+        for (int i = 0; i < a.length; i++) {
+            s += "(x -" + a[i] + ")^2";
+        }
+        er = "(" + ult + ")*" + s;
+        return p.Ecuacion(er, v) + "";
+    }*/
 }
