@@ -311,34 +311,34 @@ public class Home extends javax.swing.JFrame {
                         btnGrafica.setVisible(false);
                         break;
                     case 2:
-                        double x[] = {0, Math.PI / 3, Math.PI / 2};
+                        double x[] = {0, 0,Math.PI / 3,Math.PI / 3, Math.PI / 2, Math.PI / 2};
                         double x1[]={p.Ecuacion(p.Derivar("x^2cos(5x+2)"), 0),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 3),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 2)};
                         double y1[]={0};
-                        double y[] = {0, 0.6353845729, -2.243601471};
+                        double y[] = {0,0, 0.6353845729,0.6353845729, -2.243601471,-2.243601471};
                         cmbAnio.setVisible(false);
                         String cadena[] = hm.Hermite(x, y, x1,y1, (Math.PI / 4));
                         txtaResp.setText(cadena[0]);
                         btnGrafica.setVisible(true);
                         break;
                     case 3:
-                        double a[] = {0, Math.PI / 4, Math.PI / 2};
+                        double a[] = {0,0, Math.PI / 4,Math.PI / 4, Math.PI / 2, Math.PI / 2};
                         double x2[]={p.Ecuacion(p.Derivar("sen(x)"), 0),p.Ecuacion(p.Derivar("sen(x)"), Math.PI / 4),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 2)};
                         double y2[]={0};
-                        double b[] = {0, Math.sqrt(2) / 2, 1};
+                        double b[] = {0,0, Math.sqrt(2) / 2, Math.sqrt(2) / 2, 1,1};
                         cmbAnio.setVisible(false);
                         String cadena1[] = hm.Hermite(a, b, x2, y2,Math.PI / 6);
-                        txtaResp.setText(cadena1[0] + "\n" + "Evaluado pi/6" + "\n" + cadena1[1] + "\n" + cadena1[2]);
+                        txtaResp.setText(cadena1[0] );
                         btnGrafica.setVisible(true);
                         break;
                     case 4:
-                        double c[] = {0,1};
+                        double c[] = {0,0,1,1};
                         double c1[]={-2,0};
                         double d1[]={6,-8};
-                        double d[] = {1, 1};
+                        double d[] = {1,1, 1,1};
                         cmbAnio.setVisible(false);
                         String cadena2[] = hm.Hermite(c, d, c1, d1, 2);
-                        txtaResp.setText(cadena2[0] + "\n" + "Evaluado 2" + "\n" + cadena2[1] + "\n" + cadena2[2]);
-                        btnGrafica.setVisible(true);
+                        txtaResp.setText(cadena2[0]);
+                        btnGrafica.setVisible(false);
                         break;
                     default:
                         break;
@@ -476,22 +476,24 @@ public class Home extends javax.swing.JFrame {
         } else if(i==4){
         switch (cmbAnio.getSelectedIndex()) {
                 case 1: {
-                    // String cadena[] = hm.Hermite(x, y, x1, y1, 1964);
+                    double x5[] = {1910,1910, 1930,1930, 1950,1950, 1960,1960, 1980,1980};
+                    double y5[] = {125350,125350, 133420,133420, 117183, 117183, 120323,120323, 145311, 145311};
+                    // String cadena[] = hm.Hermite(x5, y5, x1, y1, 1964);
                     //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 2: {
-                    // String cadena[] = hm.Hermite(x, y, x1, y1, 2000);
+                    // String cadena[] = hm.Hermite(x5, y5, x1, y1, 2000);
                     //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 3: {
-                    // String cadena[] = hm.Hermite(x, y, x1, y1, 2010);
+                    // String cadena[] = hm.Hermite(x5, y5, x1, y1, 2010);
                     //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
                 case 4: {
-                    // String cadena[] = hm.Hermite(x, y, x1, y1, 2018);
+                    // String cadena[] = hm.Hermite(x5, y5, x1, y1, 2018);
                     //txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[3]);
                     break;
                 }
