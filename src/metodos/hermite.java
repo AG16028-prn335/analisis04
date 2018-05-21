@@ -9,7 +9,7 @@ public class hermite {
 
     public void Hermite(double x[], double y[], String funcion) {
         String pol = "", sal = "";
-        double nx[], Derivada[];
+        double nx[], Derivada[] = {1};
         int co = 0, con = 1;
         for (int i = 1; i < x.length; i++) {
             if (x[i] != x[i - 1]) {
@@ -21,11 +21,9 @@ public class hermite {
         for (int i = 1; i < x.length; i++) {
             con=1;
             if (i != 1) {
-                if (i % 2 == 0) {
-                    if (x[i] != x[i - 1]) {
+                if (x[i] != x[i - 1]) {
                         nx[co] = x[i];
                         co--;
-                    }
                 } else {
                     for (int j = i; j <x.length; j++) {
                         if (x[j]==x[j-1]) {
@@ -36,6 +34,7 @@ public class hermite {
                     }
                     nx[co]=con;
                     co--;
+                    i+=con-2;
                 }
             } else {
                 nx[co] = x[i - 1];
@@ -49,6 +48,7 @@ public class hermite {
                     }
                     nx[co]=con;
                     co--;
+                    i+=con-2;
             }
         }
         con=0;
@@ -57,17 +57,24 @@ public class hermite {
                 con+=nx[i]-1;
             }
         }
-        pol=funcion;
-        System.out.println("nx: "+(nx.length)/2);
-        while(con-1>0){
-           pol= p.Derivar(pol);
-            System.out.println("pol: "+pol);
-            for (int i = 0; i < 10; i++) {
-                
-            }
-            con--;
+        Derivada= new double[con+(nx.length)/2];
+        //con este metodo se ordena todo lo de los numeros repetidos
+        co=0;
+        con=0;
+        for (int i = 0; i <(nx.length)/2; i++) {
+            double burbuja=nx[i];
+            nx[i]=nx[nx.length-1-i];
+            nx[nx.length-1-i]=burbuja;
         }
-        
+        for (int i = 0; i <nx.length; i++) {
+            if (i%2==0) {
+                Derivada[co]=nx[i];
+                co+=(int) nx[i+1];
+            }
+        }
+        for (int i = 0; i <Derivada.length; i++) {
+            System.out.println("der: "+Derivada[i]);
+        }
         //lenando x, y
 //        Object matriz[][] = new Object[x.length][x.length + 1];
 //        for (int i = 0; i < x.length; i++) {
