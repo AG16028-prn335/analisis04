@@ -29,10 +29,8 @@ public class Home extends javax.swing.JFrame {
 
     Lagrange lg = new Lagrange();
     Newton nw = new Newton();
-    Trazadores tc = new Trazadores();
-    graficas gf = new graficas();
     hermite hm = new hermite();
-
+    Cubicos tc = new Cubicos();
     int i = 0;
     DefaultTableModel model = new DefaultTableModel();
 
@@ -305,6 +303,20 @@ public class Home extends javax.swing.JFrame {
                 }
                 break;
             case 4:
+                switch (cmbFunciones.getSelectedIndex()) {
+                    case 1:
+                        cmbAnio.setVisible(true);
+                        btnGrafica.setVisible(false);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case 5:
                 break;
@@ -339,6 +351,7 @@ public class Home extends javax.swing.JFrame {
         ver(true);
         i = 4;
         cmbFunciones.removeAll();
+        cmbFunciones.addItem("SELECCIONE");
         cmbFunciones.addItem("Ejercicio 1");
         cmbFunciones.addItem("Ejercicio 3");
         cmbFunciones.addItem("Ejercicio 4");
@@ -351,10 +364,8 @@ public class Home extends javax.swing.JFrame {
         Oculta();
         ver(true);
         i = 5;
-        cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("Ejercicio 1");
-        cmbFunciones.addItem("Ejercicio 5");
-        cmbFunciones.addItem("Ejercicio 7");
+        tc.show();
+        this.setVisible(false);
     }//GEN-LAST:event_btnTrazadoresActionPerformed
 
     private void cmbAnioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAnioItemStateChanged
