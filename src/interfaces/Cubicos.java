@@ -192,10 +192,9 @@ public class Cubicos extends javax.swing.JFrame {
 
     private void cmbGradosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbGradosItemStateChanged
         // TODO add your handling code here:
-//        double x[] = {0, 1, 2, 3};
-//        double y[] = {-1, 6, 31, 98};
-        double x[] = {3, 4.5, 7, 9};
-        double y[] = {2.5, 1, 2.5, 0.5};
+        double x[] = {0, 1, 2, 3};
+        double y[] = {-1, 6, 31, 98};
+        
         switch (cmbGrados.getSelectedIndex()) {
             case 1:
                 jTextArea.setText("");
@@ -356,20 +355,20 @@ public class Cubicos extends javax.swing.JFrame {
 
                 }
                 //3er grado
-                if(cmbGrados.getSelectedIndex()==3){
-                fun = (y[j] + " + (" + bj[j] + ")(x" + j + signo + x[j] + ")  +  (" + cj[j] + ")(x" + j + signo + x[j] + ")^2 + ( " + dj[j] + ")(x" + j + signo + x[j] + ")^3");
-                String ec = p.poli(fun);
-                jTextArea.append(ec + "\n");}
-                //2do grado
-                else if(cmbGrados.getSelectedIndex()==2){
-                fun = ("("+ bj[j] + ")(" + j + signo + x[j] + ")  +  ("+ cj[j] + ")(x" + j + signo + x[j] + ")+ ( " + dj[j] + ")(x" + j + signo + x[j] + ")^2");
-                String ec1  = p.poli(fun);
-                jTextArea.append(ec1 + "\n");}
-                //1er grado
-                else if(cmbGrados.getSelectedIndex()==1){
-                fun = ("("+ cj[j] + ")(x" + j + signo + x[j] + ")+ ( " + dj[j] + ")(x" + j + signo + x[j] + ")");
-                String ec2 = p.poli(fun);
-                jTextArea.append(ec2 + "\n");
+                if (cmbGrados.getSelectedIndex() == 3 || cmbfuncions.getSelectedIndex() == 1 || cmbfuncions.getSelectedIndex() == 3) {
+                    fun = (y[j] + " + (" + bj[j] + ")(x" + j + signo + x[j] + ")  +  (" + cj[j] + ")(x" + j + signo + x[j] + ")^2 + ( " + dj[j] + ")(x" + j + signo + x[j] + ")^3");
+                    String ec = p.poli(fun);
+                    jTextArea.append(ec + "\n");
+                } //2do grado
+                else if (cmbGrados.getSelectedIndex() == 2) {
+                    fun = ("(" + bj[j] + ")(" + j + signo + x[j] + ")  +  (" + cj[j] + ")(x" + j + signo + x[j] + ")+ ( " + dj[j] + ")(x" + j + signo + x[j] + ")^2");
+                    String ec1 = p.poli(fun);
+                    jTextArea.append(ec1 + "\n");
+                } //1er grado
+                else if (cmbGrados.getSelectedIndex() == 1) {
+                    fun = ("(" + cj[j] + ")(x" + j + signo + x[j] + ")+ ( " + dj[j] + ")(x" + j + signo + x[j] + ")");
+                    String ec2 = p.poli(fun);
+                    jTextArea.append(ec2 + "\n");
                 }
             }
 

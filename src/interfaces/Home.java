@@ -376,22 +376,22 @@ public class Home extends javax.swing.JFrame {
             switch (cmbAnio.getSelectedIndex()) {
                 case 1: {
                     String cadena[] = lg.Lagrange(x, y, 1964);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 64");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[2]);
                     break;
                 }
                 case 2: {
                     String cadena[] = lg.Lagrange(x, y, 2000);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 00");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[2]);
                     break;
                 }
                 case 3: {
                     String cadena[] = lg.Lagrange(x, y, 2010);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 10");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[2]);
                     break;
                 }
                 case 4: {
                     String cadena[] = lg.Lagrange(x, y, 2018);
-                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + "año 18");
+                    txtaResp.setText(cadena[0] + "\n" + cadena[1] + "\n" + cadena[2]);
                     break;
                 }
                 default:
@@ -454,6 +454,7 @@ public class Home extends javax.swing.JFrame {
     private void btnGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaActionPerformed
         // TODO add your handling code here:
         lblPol.setVisible(false);
+        cmbFunciones.setVisible(false);
         txtaResp.setVisible(false);
         btnGrafica.setVisible(false);
         jPanelMuestraGrafica.setVisible(true);
