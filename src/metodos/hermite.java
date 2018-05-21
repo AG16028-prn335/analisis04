@@ -9,7 +9,7 @@ public class hermite {
 
     public void Hermite(double x[], double y[], String funcion) {
         String pol = "", sal = "";
-        double nx[], Derivada[] = {1};
+        double nx[], Derivada[];
         int co = 0, con = 1;
         for (int i = 1; i < x.length; i++) {
             if (x[i] != x[i - 1]) {
@@ -109,25 +109,38 @@ public class hermite {
             matriz[i][0] = x[i];
             matriz[i][1] = y[i];
         }
+        
         //llendando matriz
         int cn = 2;
+        con=1;
         if (!funcion.equals("")) {
             for (int i = 1; i < x.length + 1; i++, cn++) {
+                System.out.println("sale de ");
             for (int j = 1; j < x.length; j++) {
-                if (i == 1) {
-                    if ((((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1]))==0 && (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]))==0) {
-                        matriz[j][cn]=Derivada[0];
-                        System.out.println("hola");
+                 if (x[j]!=x[j-1]) {
+                    if (j%2!=0) {
                     }else{
+                        con+=(int)nx[j]+1;
+                    }
+                    }
+                if (i == 1) {
+                    //ver si numerador k/0
+                    if ((Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]))==0) {
+                        matriz[j][cn]=Derivada[con-i];
+                        System.out.println("hola1");
+                    }else{
+                        System.out.println("jamas1 "+j);
                         matriz[j][cn] = (((double) matriz[j][cn - 1] - (double) matriz[j - 1][cn - 1])) / (Double.parseDouble("" + x[j]) - Double.parseDouble("" + x[j - 1]));                        
                     }
                 } else {
                     int o = j + i - 1;
+                    System.out.println("vere: "+o);
                     if (o < x.length) {
-                         if ((((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1]))==0 && (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - 1]))==0) {
-                             matriz[j][cn]=Derivada[0];
-                             System.out.println("hola");
+                         if ((Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - 1]))==0) {
+                             matriz[j][cn]=Derivada[con-j-i];
+                             System.out.println("hola "+o);
                         }else{
+                             System.out.println("jamasasd "+j);
                              matriz[o][cn] = (((double) matriz[o][cn - 1] - (double) matriz[o - 1][cn - 1])) / (Double.parseDouble("" + x[o]) - Double.parseDouble("" + x[o - i]));
                          }
                     }
@@ -139,7 +152,7 @@ public class hermite {
         for (int s = 0; s < x.length; s++) {
             for (int j = 0; j < x.length + 1; j++) {
                 if (matriz[s][j] != null) {
-                    System.out.print(matriz[s][j] + " |\t");
+                    System.out.print(matriz[s][j] + "| \t");
                 }
             }
             System.out.println("");
