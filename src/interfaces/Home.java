@@ -311,7 +311,7 @@ public class Home extends javax.swing.JFrame {
                         btnGrafica.setVisible(false);
                         break;
                     case 2:
-                        double x[] = {0, 0,Math.PI / 3,Math.PI / 3, Math.PI / 2, Math.PI / 2};
+                        double x[] = {0,0, Math.PI / 3, Math.PI / 3, Math.PI / 2, Math.PI / 2};
                         double x1[]={p.Ecuacion(p.Derivar("x^2cos(5x+2)"), 0),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 3),p.Ecuacion(p.Derivar("x^2cos(5x+2)"), Math.PI / 2)};
                         double y1[]={0};
                         double y[] = {0,0, 0.6353845729,0.6353845729, -2.243601471,-2.243601471};
